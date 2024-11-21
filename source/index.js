@@ -1,7 +1,7 @@
 import { is } from '@yurkimus/types'
 
 /**
- * @param {import('source/index.d.ts').Options} options
+ * @param {import('./index.d.ts').Options} options
  */
 export let url = options => {
   if (!is('Object', options))
