@@ -1,4 +1,4 @@
-# Types
+# Url
 
 JavaScript utility for effortless URL building.
 
