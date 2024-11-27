@@ -2,12 +2,18 @@
   "type": "module",
 
   "name": "@yurkimus/url",
-  "version": "0.1.0",
+
+  "version": "0.1.1",
   "author": "yurkimus <yurkimus@gmail.com>",
+
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yurkimus/url.git"
+  },
 
   "exports": "./source/index.js",
 
   "dependencies": {
-    "@yurkimus/types": "github:yurkimus/types"
+    "@yurkimus/types": "npm:@yurkimus/types"
   }
 }
