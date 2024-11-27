@@ -7,6 +7,18 @@ export let url = init => {
   if (!is('Object', init))
     throw new TypeError(`Parameter 'init' must be of 'Object' type.`)
 
+  if (!('protocol' in init))
+    throw new TypeError(`Parameter 'init.protocol' must be presented.`)
+
+  if (!is('String', init.protocol))
+    throw new TypeError(`Parameter 'init.protocol' must be of type 'String'.`)
+
+  if (!('hostname' in init))
+    throw new TypeError(`Parameter 'init.hostname' must be presented.`)
+
+  if (!is('String', init.hostname))
+    throw new TypeError(`Parameter 'init.hostname' must be of type 'String'.`)
+
   let instance = new URL(
     init.pathname ?? '',
     init.protocol
