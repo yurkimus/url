@@ -1,38 +1,38 @@
 import { is } from '@yurkimus/types'
 
 /**
- * @param {import('./index.d.ts').Options} options
+ * @param {Pick<URL, 'protocol' | 'hostname' | 'port' | 'pathname' | 'search' | 'hash' | 'username' | 'password'>} init
  */
-export let url = options => {
-  if (!is('Object', options))
-    throw new TypeError(`'options' must be of 'Object' type.`)
+export let url = init => {
+  if (!is('Object', init))
+    throw new TypeError(`Parameter 'init' must be of 'Object' type.`)
 
-  if (!is('String', options.base))
-    throw new TypeError(`'base' must be of 'String' type.`)
+  let instance = new URL(
+    init.pathname ?? '',
+    init.protocol
+      + '://'
+      + init.hostname,
+  )
 
-  if (!URL.canParse(options.base))
-    throw new TypeError(`'base' must be URL-like.`)
+  for (let option of ['pathname', 'protocol', 'hostname'])
+    delete init[option]
 
-  let instance = new URL(options.pathname ?? '', options.base)
-
-  for (let option of ['base', 'pathname']) delete options[option]
-
-  for (let option in options) {
+  for (let option in init) {
     switch (option) {
       case 'search':
-        instance.search = new URLSearchParams(options.search)
+        instance.search = new URLSearchParams(init.search)
         break
 
-      case 'hash':
       case 'port':
-      case 'protocol':
+      case 'pathname':
       case 'username':
       case 'password':
-        instance[option] = options[option]
+      case 'hash':
+        instance[option] = init[option]
         break
 
       default:
-        throw new TypeError(`No predicate found for 'option': '${option}'.`)
+        throw new TypeError(`Options '${option}' is not allowed.`)
     }
   }
 

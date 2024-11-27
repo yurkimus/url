@@ -2,7 +2,7 @@
   "type": "module",
 
   "name": "@yurkimus/url",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "author": "yurkimus <yurkimus@gmail.com>",
 
   "exports": "./source/index.js",

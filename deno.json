@@ -1,13 +1,7 @@
 {
-  "version": "0.0.0",
+  "version": "0.1.0",
 
   "imports": {
-    "source/": "./source/",
-
     "@yurkimus/types": "https://raw.githubusercontent.com/yurkimus/types/main/source/index.js"
-  },
-
-  "compilerOptions": {
-    "lib": ["deno.window", "dom"]
   }
 }
