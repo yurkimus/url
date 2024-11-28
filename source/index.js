@@ -1,51 +1,74 @@
 import { is } from '@yurkimus/types'
 
 /**
- * @param {Pick<URL, 'protocol' | 'hostname' | 'port' | 'pathname' | 'search' | 'hash' | 'username' | 'password'>} init
+ * @typedef {object} URLOptions
+ * @prop {string} [username]
+ * @prop {string} [password]
+ * @prop {string} [pathname]
+ * @prop {string} [hash]
+ * @prop {string | number} [port]
+ * @prop {string | object | any[] | URLSearchParams} [search]
+ *
+ * @param {string | URL} base
+ * @param {string} path
+ * @param {URLOptions} [options]
  */
-export let url = init => {
-  if (!is('Object', init))
-    throw new TypeError(`Parameter 'init' must be of 'Object' type.`)
+export let url = (base, path, options) => {
+  if (!['String', 'URL'].some(kind => is(kind, base)))
+    throw new TypeError(`Parameter 'base' must be of type 'String' or 'URL'.`)
 
-  if (!('protocol' in init))
-    throw new TypeError(`Parameter 'init.protocol' must be presented.`)
+  if (!is('String', path))
+    throw new TypeError(`Parameter 'path' must be of type 'String'.`)
 
-  if (!is('String', init.protocol))
-    throw new TypeError(`Parameter 'init.protocol' must be of type 'String'.`)
+  let instance = new URL(path, base)
 
-  if (!('hostname' in init))
-    throw new TypeError(`Parameter 'init.hostname' must be presented.`)
+  if (!is('Undefined', options)) {
+    if (!is('Object', options))
+      throw new TypeError(`Parameter 'options' must be of type 'Object'.`)
+    else
+      for (let option in options)
+        switch (option) {
+          case 'username':
+          case 'password':
+          case 'pathname':
+          case 'hash':
+            if (!is('String', options[option]))
+              throw new TypeError(
+                `Parameter 'options.${option}' must be of type 'String'.`,
+              )
+            else
+              instance[option] = options[option]
+            break
 
-  if (!is('String', init.hostname))
-    throw new TypeError(`Parameter 'init.hostname' must be of type 'String'.`)
+          case 'port':
+            if (
+              !['String', 'Number']
+                .some(kind => is(kind, options[option]))
+            )
+              throw new TypeError(
+                `Parameter 'options.${option}' must be of type 'String'.`,
+              )
+            else
+              instance[option] = options[option]
+            break
 
-  let instance = new URL(
-    init.pathname ?? '',
-    init.protocol
-      + '://'
-      + init.hostname,
-  )
+          case 'search':
+            if (
+              !['Object', 'String', 'Array', 'URLSearchParams']
+                .some(kind => is(kind, options[option]))
+            )
+              throw new TypeError(
+                `Parameter 'options.${option}' must be of types: 'Object', 'String', 'Array' or 'URLSearchParams'.`,
+              )
+            else
+              instance[option] = new URLSearchParams(options[option])
+            break
 
-  for (let option of ['pathname', 'protocol', 'hostname'])
-    delete init[option]
-
-  for (let option in init) {
-    switch (option) {
-      case 'search':
-        instance.search = new URLSearchParams(init.search)
-        break
-
-      case 'port':
-      case 'pathname':
-      case 'username':
-      case 'password':
-      case 'hash':
-        instance[option] = init[option]
-        break
-
-      default:
-        throw new TypeError(`Options '${option}' is not allowed.`)
-    }
+          default:
+            throw new TypeError(
+              `Property '${option}' on 'options' is not allowed.`,
+            )
+        }
   }
 
   return instance
