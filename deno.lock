@@ -1,13 +1,28 @@
 {
   "version": "4",
-  "remote": {
-    "https://raw.githubusercontent.com/yurkimus/curry/main/source/index.js": "b34edaeecae372b74c6451e630a28bf8b5531c2024d797e45860c9c519cbbefc",
-    "https://raw.githubusercontent.com/yurkimus/types/main/source/index.js": "55d9d59e538e7c73a6558e4657281517bb26bdcfcea2fc05a4db5228243cedcf"
+  "specifiers": {
+    "npm:@yurkimus/curry@0.0.8": "0.0.8",
+    "npm:@yurkimus/types@0.2.1": "0.2.1"
+  },
+  "npm": {
+    "@yurkimus/curry@0.0.8": {
+      "integrity": "sha512-4EXfOhX9i7P/Tab5qc7obr3ilEzqoFGgYwSWHIR7voap3q1hwsj8uCWC52ubIcgu1UCVJ0alMRH8u1MG2+XbmA==",
+      "dependencies": [
+        "@yurkimus/types"
+      ]
+    },
+    "@yurkimus/types@0.2.1": {
+      "integrity": "sha512-eHABWuuMFq0Jo/HWK6I4YkHb3TrxiJyIVQaEL4GQUdcRiBNCRlL4UmHawaXHPG15LtWXEmNX1if4xgwcLklK7w=="
+    }
   },
   "workspace": {
+    "dependencies": [
+      "npm:@yurkimus/curry@0.0.8",
+      "npm:@yurkimus/types@0.2.1"
+    ],
     "packageJson": {
       "dependencies": [
-        "npm:@yurkimus/curry@0.0.6",
+        "npm:@yurkimus/curry@0.0.8",
         "npm:@yurkimus/types@0.2.1"
       ]
     }
