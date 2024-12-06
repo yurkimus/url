@@ -1,8 +1,8 @@
 {
-  "version": "0.2.2",
+  "version": "0.2.3",
 
   "imports": {
     "@yurkimus/types": "npm:@yurkimus/types@0.2.1",
-    "@yurkimus/curry": "npm:@yurkimus/curry@0.0.8"
+    "@yurkimus/curry": "npm:@yurkimus/curry@0.0.9"
   }
 }
