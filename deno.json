@@ -1,8 +1,12 @@
 {
-  "version": "0.2.3",
+  "name": "@yurkimus/url",
+
+  "version": "0.2.4",
+
+  "exports": "./source/index.js",
 
   "imports": {
     "@yurkimus/types": "npm:@yurkimus/types@0.2.1",
-    "@yurkimus/curry": "npm:@yurkimus/curry@0.0.9"
+    "@yurkimus/curry": "npm:@yurkimus/curry@0.1.0"
   }
 }
