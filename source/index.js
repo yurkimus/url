@@ -64,11 +64,11 @@ export let url = curry(
 
             case 'search':
               if (
-                !['Object', 'String', 'Array', 'URLSearchParams']
+                !['Object', 'String', 'Array', 'FormData', 'URLSearchParams']
                   .some(kind => is(kind, options[option]))
               )
                 throw new TypeError(
-                  `Parameter 'options.${option}' must be of types: 'Object', 'String', 'Array' or 'URLSearchParams'.`,
+                  `Parameter 'options.${option}' must be of types: 'Object', 'String', 'Array', 'FormData' or 'URLSearchParams'.`,
                 )
               else
                 instance[option] = new URLSearchParams(options[option])

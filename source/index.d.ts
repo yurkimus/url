@@ -8,7 +8,7 @@ type URLOptions = {
   pathname?: string
   hash?: string
   port?: string
-  search?: URLSearchParamsInit[0]
+  search?: URLSearchParamsInit[0] | FormData
 }
 
 interface url {
