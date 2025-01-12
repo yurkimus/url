@@ -11,10 +11,6 @@ type URLOptions = {
   search?: URLSearchParamsInit[0] | FormData
 }
 
-interface url {
-  (base: URLInit[0]): (path: string, options?: URLOptions) => URL
+type Url = (base: URLInit[0], pathname: string, options?: URLOptions) => URL
 
-  (base: URLInit[0], path: string, options?: URLOptions): URL
-}
-
-export let url: url
+export let url: Url

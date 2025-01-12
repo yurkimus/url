@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+
+    "module": "NodeNext",
+    "moduleResolution": "nodenext",
+
+    "strictBindCallApply": true
+  },
+}
